@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "ESNext",
+    "typeRoots": ["node_modules/@types"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "pretty": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "dist",
+    "noEmit": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@command/*": ["utils/*"],
+      "@config": ["config"],
+      "@queries/*": ["utils/*"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.json", ".env"],
+  "exclude": ["node_modules"]
+}
