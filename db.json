@@ -1,0 +1,25 @@
+{
+  "customers": [
+    {
+      "id": "8062741b-41e6-4c8e-857a-331f0274c17f",
+      "name": "John Doe"
+    }
+  ],
+  "products": [
+    {
+      "id": "503810b2-6cf1-45ad-8447-143ddae91139",
+      "name": "first",
+      "description": "first product",
+      "price": 2000,
+      "stock": 5
+    },
+    {
+      "id": "4c18e80a-7ba1-4e8d-a63d-4a6c271aebf6",
+      "name": "second",
+      "description": "second product",
+      "price": 3000,
+      "stock": 2
+    }
+  ],
+  "orders": []
+}
