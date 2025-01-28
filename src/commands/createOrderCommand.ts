@@ -63,7 +63,7 @@ export class CreateOrderCommand {
     // ugh🤢🤢
     // this should be transaction as whole but as far as I can see lowdb have none
     // at this point I don't have enough time to find solution or replace lowdb in code
-    let updatedProductsList: ProductListItem[] = [];
+    const updatedProductsList: ProductListItem[] = [];
 
     products.forEach((product) => {
       const selectedItem = productsList.find(

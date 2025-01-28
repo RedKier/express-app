@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Request, Response, Router } from 'express';
 
 import { Routes } from '@interfaces/routesInterface';
 
@@ -14,11 +14,7 @@ export class HealthRoutes implements Routes {
     this.router.get(this.path, this.checkHealth);
   }
 
-  private checkHealth(
-    request: Request,
-    response: Response,
-    next: NextFunction,
-  ) {
+  private checkHealth(request: Request, response: Response) {
     response.status(200).json({ serverStatus: 'healthy' });
   }
 }
