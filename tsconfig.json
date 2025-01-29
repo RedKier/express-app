@@ -7,8 +7,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "nodenext",
-    "module": "nodenext",
+    "moduleResolution": "node",
+    "module": "CommonJS",
     "pretty": true,
     "sourceMap": true,
     "declaration": true,
@@ -20,10 +20,16 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
-      "@command/*": ["utils/*"],
-      "@config": ["config"],
-      "@queries/*": ["utils/*"],
-      "@utils/*": ["utils/*"]
+      "@commands/*": ["commands/*"],
+      "@config/*": ["config/*"],
+      "@database/*": ["database/*"],
+      "@validationSchemas/*": ["validationSchemas/*"],
+      "@exceptions/*": ["exceptions/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@queries/*": ["queries/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.json", ".env"],
