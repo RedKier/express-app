@@ -14,11 +14,10 @@ interface DecreaseProductAmountCommandResult {
 
 @Service()
 export class DecreaseProductAmountCommand {
-  productsService: ProductsService;
-
-  constructor(@Inject() productsService: ProductsService) {
-    this.productsService = productsService;
-  }
+  constructor(
+    @Inject()
+    public readonly productsService: ProductsService,
+  ) {}
 
   async execute(
     payload: DecreaseProductAmountCommandPayload,

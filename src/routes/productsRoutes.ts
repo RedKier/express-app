@@ -6,7 +6,7 @@ import { CreateProductCommand } from '@commands/createProductCommand';
 import { GetProductsQuery } from '@queries/getProductsQuery';
 import { DecreaseProductAmountCommand } from '@commands/decreaseProductAmountCommand';
 import { IncreaseProductAmountCommand } from '@commands/increaseProductAmountCommand';
-import Container from 'typedi';
+import Container, { Inject } from 'typedi';
 import { createProductValidationSchema } from '@validationSchemas/createProductValidationSchema';
 import { decreaseProductAmountValidationSchema } from '@validationSchemas/decreaseProductAmountValidationSchema';
 import { increaseProductAmountValidationSchema } from '@validationSchemas/increaseProductAmountValidationSchema';

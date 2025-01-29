@@ -17,22 +17,14 @@ interface CreateOrderCommandResult {
 
 @Service()
 export class CreateOrderCommand {
-  productsService: ProductsService;
-  customersService: CustomersService;
-  ordersService: OrdersService;
-
   constructor(
     @Inject()
-    productsService: ProductsService,
+    public readonly productsService: ProductsService,
     @Inject()
-    customersService: CustomersService,
+    public readonly customersService: CustomersService,
     @Inject()
-    ordersService: OrdersService,
-  ) {
-    this.productsService = productsService;
-    this.customersService = customersService;
-    this.ordersService = ordersService;
-  }
+    public readonly ordersService: OrdersService,
+  ) {}
 
   async execute(
     payload: CreateOrderCommandPayload,

@@ -15,11 +15,10 @@ interface CreateProductCommandResult {
 
 @Service()
 export class CreateProductCommand {
-  productsService: ProductsService;
-
-  constructor(@Inject() productsService: ProductsService) {
-    this.productsService = productsService;
-  }
+  constructor(
+    @Inject()
+    public readonly productsService: ProductsService,
+  ) {}
 
   async execute(
     payload: CreateProductCommandPayload,
