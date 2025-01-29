@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
 import { Routes } from '@interfaces/routesInterface';
-import { ValidationMiddleware } from '@middlewares/validationMiddleware';
-import { createProductDTO } from '@dtos/createProductDto';
+import { validationMiddleware } from '@middlewares/validationMiddleware';
 import { CreateProductCommand } from '@commands/createProductCommand';
 import { GetProductsQuery } from '@queries/getProductsQuery';
-import { IncreaseProductAmountDTO } from '@dtos/increaseProductAmountDto';
-import { DecreaseProductAmountDTO } from '@dtos/decreaseProductAmountDto';
 import { DecreaseProductAmountCommand } from '@commands/decreaseProductAmountCommand';
 import { IncreaseProductAmountCommand } from '@commands/increaseProductAmountCommand';
 import Container from 'typedi';
+import { createProductValidationSchema } from '@validationSchemas/createProductValidationSchema';
+import { decreaseProductAmountValidationSchema } from '@validationSchemas/decreaseProductAmountValidationSchema';
+import { increaseProductAmountValidationSchema } from '@validationSchemas/increaseProductAmountValidationSchema';
 
 export class ProdutsRoutes implements Routes {
   public path = '/products';
@@ -38,19 +38,19 @@ export class ProdutsRoutes implements Routes {
 
     this.router.post(
       this.path,
-      ValidationMiddleware(createProductDTO),
+      validationMiddleware(createProductValidationSchema),
       this.createProduct.bind(this),
     );
 
     this.router.post(
       `${this.path}/:id/restock`,
-      ValidationMiddleware(IncreaseProductAmountDTO),
+      validationMiddleware(increaseProductAmountValidationSchema),
       this.restockProduct.bind(this),
     );
 
     this.router.post(
       `${this.path}/:id/sell`,
-      ValidationMiddleware(DecreaseProductAmountDTO),
+      validationMiddleware(decreaseProductAmountValidationSchema),
       this.sellProduct.bind(this),
     );
   }
@@ -95,11 +95,12 @@ export class ProdutsRoutes implements Routes {
     response: Response,
     next: NextFunction,
   ) {
-    const { productId, amount } = request.body;
+    const { id } = request.params;
+    const { amount } = request.body;
 
     try {
       const { data } = await this.increaseProductAmountCommand.execute({
-        productId,
+        id,
         amount,
       });
 
@@ -114,11 +115,12 @@ export class ProdutsRoutes implements Routes {
     response: Response,
     next: NextFunction,
   ) {
-    const { productId, amount } = request.body;
+    const { id } = request.params;
+    const { amount } = request.body;
 
     try {
       const { data } = await this.decreaseProductAmountCommand.execute({
-        productId,
+        id,
         amount,
       });
 

@@ -4,7 +4,7 @@ import { Inject, Service } from 'typedi';
 import { ProductsService } from '@services/productsService';
 
 interface DecreaseProductAmountCommandPayload {
-  productId: string;
+  id: string;
   amount: number;
 }
 
@@ -23,12 +23,12 @@ export class DecreaseProductAmountCommand {
   async execute(
     payload: DecreaseProductAmountCommandPayload,
   ): Promise<DecreaseProductAmountCommandResult> {
-    const { productId, amount } = payload;
+    const { id, amount } = payload;
 
-    const product = await this.productsService.findOneById(productId);
+    const product = await this.productsService.findOneById(id);
 
     if (!product) {
-      throw new HttpException(404, `Product with id: ${productId} not found.`);
+      throw new HttpException(404, `Product with id: ${id} not found.`);
     }
 
     if (product.stock < amount) {
@@ -36,7 +36,7 @@ export class DecreaseProductAmountCommand {
     }
 
     const updatedProduct = await this.productsService.changeProductStock(
-      productId,
+      id,
       product.stock - amount,
     );
 

@@ -3,8 +3,8 @@ import { NextFunction, Request, Response, Router } from 'express';
 import { Routes } from '@interfaces/routesInterface';
 import { CreateOrderCommand } from '@commands/createOrderCommand';
 import Container from 'typedi';
-import { ValidationMiddleware } from '@middlewares/validationMiddleware';
-import { CreateOrderDTO } from '@dtos/createOrderDto';
+import { validationMiddleware } from '@/middlewares/validationMiddleware';
+import { createOrderValidationSchema } from '@/validationSchemas/createOrderValidationSchema';
 
 export class OrdersRoutes implements Routes {
   public path = '/orders';
@@ -21,7 +21,7 @@ export class OrdersRoutes implements Routes {
   private loadRoutes() {
     this.router.post(
       this.path,
-      ValidationMiddleware(CreateOrderDTO),
+      validationMiddleware(createOrderValidationSchema),
       this.createOrder.bind(this),
     );
   }

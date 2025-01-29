@@ -23,7 +23,7 @@
       "@commands/*": ["commands/*"],
       "@config/*": ["config/*"],
       "@database/*": ["database/*"],
-      "@dtos/*": ["dtos/*"],
+      "@validationSchemas/*": ["validationSchemas/*"],
       "@exceptions/*": ["exceptions/*"],
       "@interfaces/*": ["interfaces/*"],
       "@middlewares/*": ["middlewares/*"],

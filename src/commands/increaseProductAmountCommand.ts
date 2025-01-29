@@ -4,7 +4,7 @@ import { HttpException } from '@exceptions/httpException';
 import { Inject, Service } from 'typedi';
 
 interface IncreaseProductAmountCommandPayload {
-  productId: string;
+  id: string;
   amount: number;
 }
 
@@ -23,16 +23,16 @@ export class IncreaseProductAmountCommand {
   async execute(
     payload: IncreaseProductAmountCommandPayload,
   ): Promise<IncreaseProductAmountCommandResult> {
-    const { productId, amount } = payload;
+    const { id, amount } = payload;
 
-    const product = await this.productsService.findOneById(productId);
+    const product = await this.productsService.findOneById(id);
 
     if (!product) {
-      throw new HttpException(404, `Product with id: ${productId} not found.`);
+      throw new HttpException(404, `Product with id: ${id} not found.`);
     }
 
     const updatedProduct = await this.productsService.changeProductStock(
-      productId,
+      id,
       product.stock + amount,
     );
 
